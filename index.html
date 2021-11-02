@@ -1,0 +1,169 @@
+<!-- // Complete exercises from 1 to 6 with just plain HTML:
+// EX1: Add an h1 tag with the name of your shop
+// EX2: Add a TABLE with the top 5 products of your shop
+// EX3: Insert for each product an image, a title, a description and a price
+// EX4: Add links to existing Amazon products for each item in the table
+// EX5: Add a footer with the address and the name of your shop
+// EX6: Add a message board where the user can type a message in it (no real posting/saving features required!)
+// …from 7 to 12, should be written in JavaScript:
+// EX7: Write a function to change the h1 text to something else
+// EX8: Write a function to change the page background color
+// EX9: Write a function to change the footer address with a fake one
+// EX10: Write a function to add a CSS class to every Amazon link
+// EX11: Write a function to toggle a CSS class for all the images in the table; that class should set the visibility of the image
+// EX12: Write a function to color the price of the products in a different one every time it's invoked -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: darkgoldenrod;
+        }
+
+        button{
+            padding:10px;
+
+        }
+        img{
+            height: 200px;
+            width: 200px
+        }
+        footer{
+            margin-top: 20px;
+            color:white;
+            background-color: black;
+            display: flex; 
+            justify-content: space-around;
+        }
+        a{
+            text-decoration: none;
+            color :white;
+        }
+        .td-styler{
+            font-size: larger;
+            font-weight: 600;
+            color: coral; 
+
+        }
+    </style>
+</head>
+<body>
+    <h1>HIGH POINT TRY NEW BEST</h1>
+
+    <button id="backgroundChanger" onclick="changeBackgroundColorNode()">Change the background color to blue</button>
+    <button id="tableStyle" onclick="changeTableStyleNode()">Change the background color to blue</button>
+    <table>
+        <tr>
+            <td>Picture</td>
+            <td>items</td>
+            <td>Description</td>
+            <td>Prices</td>
+        </tr>
+        
+
+        <a href="https://m.media-amazon.com/images/I/81-9dRP2v4L._AC_UL640_FMwebp_QL65_.jpg">
+            <tr>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa5e1l6naLqK9bGBryyTPq1bOqKv4vdkRMZw&usqp=CAU" alt="e7 hoodie"></td>
+                <td>Elan Hoodie</td>
+                <td>Elan hoodie since 1845</td>
+                <td>120</td>
+            </tr>
+        </a>
+            <a href="https://www.amazon.de/-/en/Tommy-Hilfiger-Lines-T-Shirt-black/dp/B08T6J6V5S/ref=sr_1_23?dchild=1&keywords=tommy+hilfiger-t-shirt&qid=1635862366&sr=8-23"></a><tr>
+
+            <tr>
+                <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO134Ev5FFtvzWOQ1OVRnboH90RBmqsbpwvw&usqp=CAU" alt=""></td>
+                <td>T shirt</td>
+                <td>Tommy Hilfiger cotton t shirt</td>
+                <td>90</td>
+            </tr>
+        </a>
+
+        <a href="https://m.media-amazon.com/images/I/71tHZB-h0rL._AC_UL640_FMwebp_QL65_.jpg">
+
+                <tr>
+             <td><img src="data:image/jpeg;base64,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" alt="nice cap"></td>
+            <td>Cap</td>
+            <td>Nice cap</td>
+            <td>55</td>
+        </tr>
+     </a>
+
+     <a href="https://m.media-amazon.com/images/I/619h0WN5ftL._AC_UL640_FMwebp_QL65_.jpg"></a><tr>
+
+        <tr>
+            <td><img src="https://m.media-amazon.com/images/I/619h0WN5ftL._AC_UL640_FMwebp_QL65_.jpg" alt=""></td>
+            <td>shirt</td>
+            <td>cotton t shirt</td>
+            <td>90</td>
+        </tr>
+    </a>
+
+    <a href="https://m.media-amazon.com/images/I/81MO2IkLvcS._AC_UL640_FMwebp_QL65_.jpg">
+
+            <tr>
+         <td><img src="https://m.media-amazon.com/images/I/81MO2IkLvcS._AC_UL640_FMwebp_QL65_.jpg" alt="nice cap"></td>
+        <td>T shirt</td>
+        <td>t shirt contton</td>
+        <td>55</td>
+    </tr>
+ </a>
+    </table>
+
+
+    <div>
+        <h2>Contact the Store</h2>
+        <form action="">
+            <label for="email">Email Address</label>
+            <input type="text" id="email">
+            <label for="message">Message Box </label>
+            <input type="text" id="message">
+        </form>
+    </div>
+    
+
+    <footer>
+        
+<p>Suryabinayak,Bhaktapur</p>
+
+       
+<p>Copy Right <br> High Point <br>Try the new best</p>
+
+
+<ul>
+    <a href=""> <li>New Arrival</li></a>
+    <a href=""> <li>Kids</li></a>
+    <a href=""> <li>Ladies</li></a>
+    <a href=""> <li>Men</li></a>
+    </ul>
+    </footer>
+    <script>
+        let h1ChangerNode = function(){
+          let  h1Changer = document.getElementsByTagName("h1")
+            h1Changer.innerText = "Low Point Don't try"
+        } 
+        h1ChangerNode()
+        
+        let changeBackgroundColorNode = function(){
+           let backgroundColor = document.getElementsByTagName("body")
+            backgroundColor.style.backgroundColor = "red"
+            backgroundColor.style.color = "red"
+        }
+    
+        let changeTableStyleNode = function(){
+           let changeTableStyle  = document.getElementsByTagName("td")
+            changeTableStyle.classList.toggle ="td-styler"
+        }
+
+        let changeAddressNode
+    </script>
+    
+</body>
+
+
+</html>
